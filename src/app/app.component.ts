@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { QuizzesService } from './services/quizzes.service';
 
 @Component({
@@ -12,17 +12,18 @@ export class AppComponent implements OnInit {
 
   quizzesContent!: any[];
 
-  constructor(public quizzesService: QuizzesService) {}
+  quizzes$ = inject(QuizzesService).getQuizzes();
+
 
   ngOnInit(): void {
-    
-    // Getting data about articles from the Firebase
-    this.quizzesService.getQuizzes().subscribe(
+    this.quizzes$.subscribe(
       data => {
         this.quizzesContent = data;
         console.log(this.quizzesContent);
       }
     );
-
   }
+
+
+
 }
