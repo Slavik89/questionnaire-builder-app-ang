@@ -1,7 +1,28 @@
+<!-- <ng-container @for="let quiz of quizzesContent; let i = index">
+  <h3>{{ quiz.title }}</h3>
+  <p>{{ quiz.description }}</p>
+</ng-container> -->
+
+<ul class="list__cards">
+  <li *ngFor="let quiz of quizzesContent">
+    <mat-card  class="card__class">
+      <h3 class="title">{{ quiz.title }}</h3>
+
+      <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <p>Description: {{ quiz.description }}</p>
+
+    </mat-card>
+  </li>
+</ul>
+
 <div class="example-button-row">
-  <button mat-flat-button routerLink="/quiz-building">Crate new quiz</button>
-  <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  
+  <button mat-flat-button routerLink="/quiz-building">Crate new quiz</button>  
 </div>
+
+<!-- <div *ngFor="let quiz of quizzesContent">
+  <h3>{{ quiz.title }}</h3>
+  <p>{{ quiz.description }}</p>
+</div> -->

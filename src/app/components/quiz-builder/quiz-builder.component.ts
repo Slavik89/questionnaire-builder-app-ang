@@ -29,7 +29,7 @@ export class QuizBuilderComponent {
       this.quizBuilderData = this.quizBuilderForm.value;
       console.log('Save', this.quizBuilderData);
       this.quizzes$.addQuiz(this.quizBuilderData).subscribe();
-      // this.router.navigate(['/catalog']);
+      this.router.navigate(['/catalog']);
     }
   }
 
