@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { QuizBuilderService } from '../../services/quiz-builder/quiz-builder.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-quiz-builder',
@@ -10,8 +13,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class QuizBuilderComponent {
 
   quizBuilderForm!: FormGroup;
+  quizBuilderData: any ={title:'', description:''};
 
-  constructor(private fb: FormBuilder) {
+  // quizzes$ = inject(QuizBuilderService);
+
+  constructor(private fb: FormBuilder, private quizzes$: QuizBuilderService, private router: Router) {
     this.quizBuilderForm = this.fb.group({
       title: ['', Validators.required],
       description: [''],
@@ -20,8 +26,10 @@ export class QuizBuilderComponent {
 
   saveSurvey() {
     if (this.quizBuilderForm.valid) {
-      const quizbuilderData = this.quizBuilderForm.value;
-      console.log('Save', quizbuilderData);
+      this.quizBuilderData = this.quizBuilderForm.value;
+      console.log('Save', this.quizBuilderData);
+      this.quizzes$.addQuiz(this.quizBuilderData).subscribe();
+      // this.router.navigate(['/catalog']);
     }
   }
 

@@ -20,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { RouterOutlet, provideRouter } from '@angular/router';
 import { routes } from './app-routing.module';
+import { setLogLevel, LogLevel } from '@angular/fire';
 
 @NgModule({
   declarations: [
@@ -48,4 +49,10 @@ import { routes } from './app-routing.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+  constructor() {
+    
+    setLogLevel(LogLevel.SILENT); 
+  }
+}

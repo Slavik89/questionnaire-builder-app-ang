@@ -10,10 +10,12 @@ import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 })
 export class QuizzesService {
 
-  private firestore = inject(Firestore)
+  private firestore = inject(Firestore);
 
   getQuizzes(): Observable<any[]> {
     const articlesCollection = collection(this.firestore, 'quizzes');
-    return collectionData(articlesCollection, {idField: 'quizzes'}) as Observable<any[]>;;
+    return collectionData(articlesCollection, {idField: 'quizzes'}) as Observable<any[]>;
   }
+
+  
 }
