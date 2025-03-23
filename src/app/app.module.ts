@@ -21,6 +21,7 @@ import { CatalogComponent } from './components/catalog/catalog.component';
 import { RouterOutlet, provideRouter } from '@angular/router';
 import { routes } from './app-routing.module';
 import { setLogLevel, LogLevel } from '@angular/fire';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { setLogLevel, LogLevel } from '@angular/fire';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    
+    MatRadioModule
   ],
   providers: [
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
