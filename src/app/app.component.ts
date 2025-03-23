@@ -16,12 +16,15 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.quizzes$.subscribe(
+
+    
+/*     this.quizzes$.subscribe(
       data => {
         this.quizzesContent = data;
         console.log(this.quizzesContent);
       }
-    );
+    ); */
+
   }
 
 

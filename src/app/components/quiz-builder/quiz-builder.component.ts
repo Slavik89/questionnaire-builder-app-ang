@@ -28,8 +28,17 @@ export class QuizBuilderComponent {
     if (this.quizBuilderForm.valid) {
       this.quizBuilderData = this.quizBuilderForm.value;
       console.log('Save', this.quizBuilderData);
-      this.quizzes$.addQuiz(this.quizBuilderData).subscribe();
-      this.router.navigate(['/catalog']);
+      
+      this.quizzes$.addQuiz(this.quizBuilderData).subscribe({
+        next: () => {
+          console.log("Quiz added successfully");
+          this.router.navigate(['/catalog']);
+        },
+        error: (err) => {
+          console.error("Error adding quiz:", err);
+        }
+      });
+      
     }
   }
 

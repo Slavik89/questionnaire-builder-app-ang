@@ -13,14 +13,14 @@ export class QuizBuilderService {
   private quizCollection: any;
 
   constructor(private firestore: Firestore, private zone: NgZone) {
-    this.quizCollection = collection(this.firestore, 'quizzes');
+    this.quizCollection = collection(this.firestore, 'quizId');
   }
 
-  /*
+  
   addQuiz(quiz: any): Observable<any> {
     return from(addDoc(this.quizCollection, quiz).then(() => console.log("Quiz added successfully", quiz)));
   }  
-    */
+  
   
   /*
   addQuiz(quiz: any): Observable<any> {
@@ -38,22 +38,5 @@ export class QuizBuilderService {
     });
   }
   */
-
-  addQuiz(quiz: any): Observable<any> {
-   
-    return new Observable((observer) => {
-      this.zone.run(() => {
-        addDoc(this.quizCollection, quiz)
-          .then(() => {
-            console.log("Quiz added successfully", quiz);
-            observer.next("Quiz added successfully");
-            observer.complete();
-          })
-          .catch((error) => {
-            observer.error(error);
-          });
-      });
-    });
-  }
 
 }

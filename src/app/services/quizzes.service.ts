@@ -13,8 +13,8 @@ export class QuizzesService {
   private firestore = inject(Firestore);
 
   getQuizzes(): Observable<any[]> {
-    const articlesCollection = collection(this.firestore, 'quizzes');
-    return collectionData(articlesCollection, {idField: 'quizzes'}) as Observable<any[]>;
+    const articlesCollection = collection(this.firestore, 'quizId');
+    return collectionData(articlesCollection, {idField: 'quizId'}) as Observable<any[]>;
   }
 
   
