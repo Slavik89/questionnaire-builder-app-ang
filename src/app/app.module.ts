@@ -22,12 +22,15 @@ import { RouterOutlet, provideRouter } from '@angular/router';
 import { routes } from './app-routing.module';
 import { setLogLevel, LogLevel } from '@angular/fire';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+import { QuizTakingComponent } from './components/quiz-taking/quiz-taking.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuizBuilderComponent,
-    CatalogComponent
+    CatalogComponent,
+    QuizTakingComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSelectModule
   ],
   providers: [
     provideFirebaseApp(() => initializeApp(firebaseConfig)),

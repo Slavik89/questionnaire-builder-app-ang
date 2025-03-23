@@ -21,6 +21,15 @@
             <mat-label>Question {{ i + 1 }}</mat-label>
             <input matInput formControlName="question" required />
           </mat-form-field>
+
+                    <!-- Дропдаун для вибору типу питання -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="type">
+              <mat-option *ngFor="let type of questionTypes" [value]="type">{{ type }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
           <button mat-icon-button color="warn" (click)="removeQuestion(i)">
             <mat-icon>delete</mat-icon>
           </button>
@@ -29,7 +38,7 @@
           <div formArrayName="options">
             <div *ngFor="let option of getOptions(i).controls; let j = index" [formGroupName]="j">
               <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Варіант відповіді {{ j + 1 }}</mat-label>
+                <mat-label>Choice {{ j + 1 }}</mat-label>
                 <input matInput formControlName="optionText" required />
               </mat-form-field>
               <button mat-icon-button color="warn" (click)="removeOption(i, j)">
@@ -40,7 +49,7 @@
 
                     <!-- Кнопка додавання варіанту відповіді -->
           <button mat-raised-button color="accent" (click)="addOption(i)" type="button">
-            Додати варіант відповіді
+            Add option
           </button>
 
 

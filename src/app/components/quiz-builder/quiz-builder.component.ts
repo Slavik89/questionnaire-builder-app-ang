@@ -17,6 +17,9 @@ export class QuizBuilderComponent {
 
   // quizzes$ = inject(QuizBuilderService);
 
+    // Список доступних типів питань
+  questionTypes = ['Single choice', 'Multiple choices', 'Text'];
+
   constructor(private fb: FormBuilder, private quizzes$: QuizBuilderService, private router: Router) {
     this.quizBuilderForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
@@ -34,6 +37,7 @@ export class QuizBuilderComponent {
   createQuestion(): FormGroup {
     return this.fb.group({
       question: ['', Validators.required], // Текст питання
+      type: ['Single choice', Validators.required], // Тип питання
       options: this.fb.array([]), // Варіанти відповідей (порожній масив)
     });
   }
@@ -77,7 +81,7 @@ export class QuizBuilderComponent {
 
 
       
-/*       this.quizzes$.addQuiz(this.quizBuilderForm).subscribe({
+      this.quizzes$.addQuiz(this.quizBuilderForm.value).subscribe({
         next: () => {
           console.log("Quiz added successfully");
           this.router.navigate(['/catalog']);
@@ -85,7 +89,7 @@ export class QuizBuilderComponent {
         error: (err) => {
           console.error("Error adding quiz:", err);
         }
-      }); */
+      });
       
     }
   }
