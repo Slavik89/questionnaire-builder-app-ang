@@ -48,6 +48,28 @@ export class QuizBuilderComponent {
     this.questions.removeAt(index);
   }
 
+      // Метод для створення нового варіанту відповіді
+  createOption(): FormGroup {
+    return this.fb.group({
+        optionText: ['', Validators.required], // Текст варіанту відповіді
+      });
+  }
+
+    // Отримати FormArray варіантів відповідей для конкретного питання
+  getOptions(questionIndex: number): FormArray {
+    return this.questions.at(questionIndex).get('options') as FormArray;
+  }
+
+  // Додати варіант відповіді до питання
+  addOption(questionIndex: number) {
+    this.getOptions(questionIndex).push(this.createOption());
+  }
+
+  // Видалити варіант відповіді
+  removeOption(questionIndex: number, optionIndex: number) {
+    this.getOptions(questionIndex).removeAt(optionIndex);
+  }
+
   saveSurvey() {
     if (this.quizBuilderForm.valid) {
       // this.quizBuilderData = this.quizBuilderForm.value;

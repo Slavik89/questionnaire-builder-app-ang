@@ -24,7 +24,29 @@
           <button mat-icon-button color="warn" (click)="removeQuestion(i)">
             <mat-icon>delete</mat-icon>
           </button>
+
+                    <!-- Блок варіантів відповідей -->
+          <div formArrayName="options">
+            <div *ngFor="let option of getOptions(i).controls; let j = index" [formGroupName]="j">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Варіант відповіді {{ j + 1 }}</mat-label>
+                <input matInput formControlName="optionText" required />
+              </mat-form-field>
+              <button mat-icon-button color="warn" (click)="removeOption(i, j)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+
+                    <!-- Кнопка додавання варіанту відповіді -->
+          <button mat-raised-button color="accent" (click)="addOption(i)" type="button">
+            Додати варіант відповіді
+          </button>
+
+
         </div>
+
+
       </div>
 
       <div>
