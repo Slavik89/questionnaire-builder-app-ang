@@ -13,10 +13,6 @@ import { Router } from '@angular/router';
 export class QuizBuilderComponent {
 
   quizBuilderForm: FormGroup;
-  // quizBuilderData: any ={title:'', description:''};
-
-  // quizzes$ = inject(QuizBuilderService);
-
     // Список доступних типів питань
   questionTypes = ['Single choice', 'Multiple choices', 'Text'];
 
