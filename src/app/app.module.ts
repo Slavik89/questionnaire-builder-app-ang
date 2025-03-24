@@ -25,6 +25,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import { QuizTakingComponent } from './components/quiz-taking/quiz-taking.component';
 
+import { MatMenuModule } from '@angular/material/menu';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,8 @@ import { QuizTakingComponent } from './components/quiz-taking/quiz-taking.compon
     MatInputModule,
     MatCardModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule
   ],
   providers: [
     provideFirebaseApp(() => initializeApp(firebaseConfig)),

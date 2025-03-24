@@ -8,14 +8,25 @@
   <ul class="list__cards">
     <li *ngFor="let quiz of quizzesContent">
       <mat-card  class="card__class">
-        <h3 class="title">{{ quiz.title }}</h3>
+
+        <div class="container">
+          <div class="left">
+            <h3 class="title">{{ quiz.title }}</h3>  
+            <p>Description: {{ quiz.description }}</p>
+          </div>
   
-        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-  
-        <p>Description: {{ quiz.description }}</p>
-  
+          <div class="right">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="More options">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="onOptionClick('Edit')">Edit</button>
+              <button mat-menu-item (click)="onOptionClick('Run')">Run</button>
+              <button mat-menu-item (click)="onOptionClick('Delete')">Delete</button>
+            </mat-menu>
+          </div>
+        </div>  
       </mat-card>
     </li>
   </ul>
@@ -25,10 +36,3 @@
   </div>
 
 </div>
-
-
-
-<!-- <div *ngFor="let quiz of quizzesContent">
-  <h3>{{ quiz.title }}</h3>
-  <p>{{ quiz.description }}</p>
-</div> -->

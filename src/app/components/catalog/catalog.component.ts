@@ -23,4 +23,8 @@ export class CatalogComponent {
     );
   }
 
+  onOptionClick(option: string) {
+    console.log('Chosen option:', option);
+  }
+
 }
