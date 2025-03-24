@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { QuizDataService } from '../../services/quiz-data/quiz-data.service'; 
 
 @Component({
   selector: 'app-quiz-taking',
@@ -9,11 +10,22 @@ import { Router } from '@angular/router';
 })
 export class QuizTakingComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  quizTitle: string | undefined = "";
+  quizQuestions: string[] | undefined = [];
+
+  constructor(private router: Router, private quizDataService: QuizDataService) {}
 
   ngOnInit(): void {
 
-    console.log('quiz-taking');
+    const quizData = this.quizDataService.getQuizData();
+
+    if (quizData) {
+      // Якщо дані є, зберігаємо їх у змінні
+      this.quizTitle = quizData.title;
+      this.quizQuestions = quizData.questions;
+    }
+
+    console.log('quiz-taking', this.quizTitle, this.quizQuestions);
 
   }
 

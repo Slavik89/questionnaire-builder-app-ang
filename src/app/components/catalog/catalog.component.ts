@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { QuizzesService } from '../../services/quizzes.service';
+// import { QuizzesService } from '../../services/quizzes.service';
 import { Router } from '@angular/router';
+import { QuizDataService } from '../../services/quiz-data/quiz-data.service';
 
 @Component({
   selector: 'app-catalog',
@@ -11,9 +12,9 @@ import { Router } from '@angular/router';
 export class CatalogComponent implements OnInit {
 
   quizzesContent!: any[];
-  quizzes$ = inject(QuizzesService).getQuizzes();
+  quizzes$ = inject(QuizDataService).getQuizzes();  
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private quizDataService: QuizDataService) {}
 
   ngOnInit(): void {
     this.quizzes$.subscribe(
@@ -24,10 +25,13 @@ export class CatalogComponent implements OnInit {
     );
   }
 
-  onOptionClick(option: string) {
+  onOptionClick(option: string, title?: string, questions?: any[],) {
     if (option === "Run") {
       console.log('Succes');
-      console.log(option);
+      console.log(option, title, questions);
+      console.log(this.quizzesContent);
+      this.quizDataService.setQuizData({ title, questions });
+
       this.router.navigate(['/quiz-taking']);
     } else {
       console.log('Failed');
