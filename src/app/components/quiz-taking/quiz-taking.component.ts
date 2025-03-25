@@ -115,6 +115,11 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
     }
   }  
 
+  getOptionLabel(index: number): string {
+    return String.fromCharCode(97 + index) + ')'; // 97 - код 'a' в ASCII
+  }
+  
+
   onSubmit() {
     if (this.quizTakingForm.valid) {
 

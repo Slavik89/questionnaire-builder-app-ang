@@ -10,8 +10,8 @@
           <!-- Відображення Radio-Button для 'Single choice' -->
           <div *ngIf="question.get('options') && question.get('answer')">
             <mat-radio-group formControlName="answer">
-              <mat-radio-button *ngFor="let option of question.get('options')?.value" [value]="option">
-                {{ option }}
+              <mat-radio-button *ngFor="let option of question.get('options')?.value; let j = index" [value]="option" >
+                {{ getOptionLabel(j) }}{{ option }}
               </mat-radio-button>
             </mat-radio-group>
           </div>
@@ -19,8 +19,8 @@
           <!-- Відображення Checkbox для 'Multiple choices' -->
           <div *ngIf="question.get('options') && question.get('answers')">
             <div *ngIf="question.get('answers') as answers" formArrayName="answers">
-              <mat-checkbox *ngFor="let option of question.get('options')?.value; let j = index" [formControlName]="j">
-                {{ option }}
+              <mat-checkbox *ngFor="let option of question.get('options')?.value; let k = index" [formControlName]="k">
+                {{ getOptionLabel(k) }}{{ option }}
               </mat-checkbox>
             </div>
             
