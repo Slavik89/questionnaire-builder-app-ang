@@ -25,8 +25,9 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private quizDataService: QuizDataService, private fb: FormBuilder) {
     // Ініціалізація форми
     this.quizTakingForm = this.fb.group({
-      questions: this.fb.array([]),
-      totalTime: [0]
+      completedQuiz: this.fb.array([]),
+      totalTime: [0],
+      quizTitle: ''
     });
   }
 
@@ -52,7 +53,7 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
 
   loadQuestions() {
     const questions = this.quizQuestions?.map(question => this.createQuestion(question)) || [];
-    this.quizTakingForm.setControl('questions', this.fb.array(questions));
+    this.quizTakingForm.setControl('completedQuiz', this.fb.array(questions));
   }
 
     
@@ -86,8 +87,8 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
     }
   }
   
-  get questions(): FormArray {
-    return this.quizTakingForm.get('questions') as FormArray;
+  get completedQuiz(): FormArray {
+    return this.quizTakingForm.get('completedQuiz') as FormArray;
   }
 
     // Запуск таймера
@@ -116,21 +117,17 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
   }  
 
   getOptionLabel(index: number): string {
-    return String.fromCharCode(97 + index) + ')'; // 97 - код 'a' в ASCII
-  }
-  
+    return String.fromCharCode(97 + index) + ')'; 
+  }  
 
   onSubmit() {
     if (this.quizTakingForm.valid) {
 
-
-      this.stopTimer();
-      // Запис фінального часу у totalTime
+      this.stopTimer();      
       const elapsedMs = Date.now() - this.startTime;
       const totalSeconds = Math.floor(elapsedMs / 1000);
-      this.quizTakingForm.patchValue({ totalTime: totalSeconds });
-
-      console.log('Total time spent:', this.elapsedTime);
+      this.quizTakingForm.patchValue({ totalTime: totalSeconds, quizTitle: this.quizTitle });
+      // console.log('Total time spent:', this.elapsedTime);
       console.log('Form Value:', this.quizTakingForm.value);
     }
   }

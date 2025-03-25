@@ -2,8 +2,8 @@
   <mat-card-title>{{ quizTitle }}</mat-card-title>
   <mat-card-content>
     <form [formGroup]="quizTakingForm" (ngSubmit)="onSubmit()">
-      <div formArrayName="questions">
-        <div *ngFor="let question of questions.controls; let i = index" [formGroupName]="i">
+      <div formArrayName="completedQuiz">
+        <div *ngFor="let question of completedQuiz.controls; let i = index" [formGroupName]="i">
           <!-- Заголовок питання -->
           <h3>{{ question.get('question')?.value }}</h3>
 
