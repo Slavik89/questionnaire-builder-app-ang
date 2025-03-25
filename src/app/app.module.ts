@@ -27,6 +27,7 @@ import { QuizTakingComponent } from './components/quiz-taking/quiz-taking.compon
 
 import { MatMenuModule } from '@angular/material/menu';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { QuizEditingComponent } from './components/quiz-editing/quiz-editing/quiz-editing.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     AppComponent,
     QuizBuilderComponent,
     CatalogComponent,
-    QuizTakingComponent
+    QuizTakingComponent,
+    QuizEditingComponent
   ],
   imports: [
     BrowserModule,

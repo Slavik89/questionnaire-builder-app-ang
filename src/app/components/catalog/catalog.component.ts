@@ -32,7 +32,15 @@ export class CatalogComponent implements OnInit {
       this.quizDataService.setQuizData({ title, questions });
 
       this.router.navigate(['/quiz-taking']);
-    } else {
+    } else if (option === "Edit") {
+      console.log('Succes');
+      console.log(option, title, questions);
+      console.log(this.quizzesContent);
+      this.quizDataService.setQuizData({ title, questions });
+
+      this.router.navigate(['/quiz-editing']);
+    }
+    else {
       console.log('Failed');
       console.log('Another option');
     }

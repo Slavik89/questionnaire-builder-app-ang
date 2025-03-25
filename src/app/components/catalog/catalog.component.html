@@ -21,7 +21,7 @@
             </button>
 
             <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="onOptionClick('Edit')">Edit</button>
+              <button mat-menu-item (click)="onOptionClick('Edit', quiz.title, quiz.questions)">Edit</button>
               <button mat-menu-item (click)="onOptionClick('Run', quiz.title, quiz.questions)">Run</button>
               <button mat-menu-item (click)="onOptionClick('Delete')">Delete</button>
             </mat-menu>
