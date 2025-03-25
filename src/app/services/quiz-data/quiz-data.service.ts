@@ -9,6 +9,7 @@ export class QuizDataService {
 
   private firestore = inject(Firestore);
   private quizData: { title: string | undefined; questions: any[] | undefined} | null = null;
+  
 
   getQuizzes(): Observable<any[]> {
     const articlesCollection = collection(this.firestore, 'quizId');

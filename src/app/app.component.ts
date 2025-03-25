@@ -1,5 +1,4 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { QuizzesService } from './services/quizzes.service';
 
 @Component({
   selector: 'app-root',
@@ -12,21 +11,7 @@ export class AppComponent implements OnInit {
 
   quizzesContent!: any[];
 
-  quizzes$ = inject(QuizzesService).getQuizzes();
 
-
-  ngOnInit(): void {
-
-    
-/*     this.quizzes$.subscribe(
-      data => {
-        this.quizzesContent = data;
-        console.log(this.quizzesContent);
-      }
-    ); */
-
-  }
-
-
+  ngOnInit(): void {  }
 
 }

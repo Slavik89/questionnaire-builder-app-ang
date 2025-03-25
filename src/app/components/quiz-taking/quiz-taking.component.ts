@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizDataService } from '../../services/quiz-data/quiz-data.service'; 
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { QuizTakingService } from '../../services/quiz-taking/quiz-taking.service';
 
 @Component({
   selector: 'app-quiz-taking',
@@ -22,7 +23,7 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
   private startTime!: number;
   private timerInterval!: any;
 
-  constructor(private router: Router, private quizDataService: QuizDataService, private fb: FormBuilder) {
+  constructor(private router: Router, private quizDataService: QuizDataService, private fb: FormBuilder, private quizTaking$: QuizTakingService) {
     // Ініціалізація форми
     this.quizTakingForm = this.fb.group({
       completedQuiz: this.fb.array([]),
@@ -127,8 +128,17 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
       const elapsedMs = Date.now() - this.startTime;
       const totalSeconds = Math.floor(elapsedMs / 1000);
       this.quizTakingForm.patchValue({ totalTime: totalSeconds, quizTitle: this.quizTitle });
-      // console.log('Total time spent:', this.elapsedTime);
       console.log('Form Value:', this.quizTakingForm.value);
+
+      this.quizTaking$.submitQuiz(this.quizTakingForm.value).subscribe({
+        next: () => {
+          console.log("Quiz submitted successfully");
+          this.router.navigate(['/catalog']);
+        },
+        error: (err) => {
+          console.error("Error adding quiz:", err);
+        }
+      });
     }
   }
 

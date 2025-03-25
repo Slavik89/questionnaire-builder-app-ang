@@ -1,5 +1,4 @@
 import { Component, OnInit, inject } from '@angular/core';
-// import { QuizzesService } from '../../services/quizzes.service';
 import { Router } from '@angular/router';
 import { QuizDataService } from '../../services/quiz-data/quiz-data.service';
 
