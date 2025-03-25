@@ -8,7 +8,7 @@ import { Firestore, collection, collectionData, doc, deleteDoc } from '@angular/
 export class QuizDataService {
 
   private firestore = inject(Firestore);
-  private quizData: { title: string | undefined; questions: any[] | undefined} | null = null;
+  private quizData: { title: string; questions: any[] } | null = null;
   
 
   getQuizzes(): Observable<any[]> {
@@ -16,8 +16,8 @@ export class QuizDataService {
     return collectionData(articlesCollection, {idField: 'quizId'}) as Observable<any[]>;
   }
 
-  setQuizData(data: { title: string | undefined; questions: any[] | undefined}) {
-    this.quizData = data; // Зберігаємо об'єкт у сервісі
+  setQuizData(quizData: any) {
+    this.quizData = quizData; // Зберігаємо об'єкт у сервісі
     console.log("Set quiz data service", this.quizData);
   }
 

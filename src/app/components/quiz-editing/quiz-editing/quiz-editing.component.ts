@@ -11,8 +11,8 @@ import { QuizDataService } from '../../../services/quiz-data/quiz-data.service';
 })
 export class QuizEditingComponent implements OnInit {
 
-  quizTitle: string | undefined = "";
-  quizQuestions: any[] | undefined = [];
+  quizTitle: string = '';
+  quizQuestions: any[] = [];
 
   // quizEditingForm: FormGroup;
 
@@ -28,6 +28,12 @@ export class QuizEditingComponent implements OnInit {
   ngOnInit(): void {
     const quizData = this.quizDataService.getQuizData();
     console.log('Quiz-Editing', quizData);
+
+    if (quizData) {
+      // Якщо дані є, зберігаємо їх у змінні
+      this.quizTitle = quizData.title;
+      this.quizQuestions = quizData.questions;
+    }
   }
 
 }
