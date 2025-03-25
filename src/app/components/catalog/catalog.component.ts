@@ -24,26 +24,21 @@ export class CatalogComponent implements OnInit {
     );
   }
 
-  onOptionClick(option: string, title?: string, questions?: any[],) {
-    if (option === "Run") {
-      console.log('Succes');
-      console.log(option, title, questions);
-      console.log(this.quizzesContent);
-      this.quizDataService.setQuizData({ title, questions });
+  onClickRun(title: string, questions: any[]) {
+    console.log('Run option', title, questions);
+    console.log(this.quizzesContent);
+    this.quizDataService.setQuizData({ title, questions });
+    this.router.navigate(['/quiz-taking']);
+  } 
 
-      this.router.navigate(['/quiz-taking']);
-    } else if (option === "Edit") {
-      console.log('Succes');
-      console.log(option, title, questions);
-      console.log(this.quizzesContent);
-      this.quizDataService.setQuizData({ title, questions });
+  onClickEdit(title: string, questions: any[]) {
+    console.log('Edit option', title, questions);
+    console.log(this.quizzesContent);
+    this.quizDataService.setQuizData({ title, questions });
+    this.router.navigate(['/quiz-editing']);
+  } 
 
-      this.router.navigate(['/quiz-editing']);
-    }
-    else {
-      console.log('Failed');
-      console.log('Another option');
-    }
+  onClickDelete(title: string, quizId: string) {
+    console.log('Delete option', title, quizId);    
   }
-
 }
