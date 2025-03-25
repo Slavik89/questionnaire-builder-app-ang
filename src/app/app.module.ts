@@ -26,6 +26,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { QuizTakingComponent } from './components/quiz-taking/quiz-taking.component';
 
 import { MatMenuModule } from '@angular/material/menu';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatCardModule,
     MatRadioModule,
     MatSelectModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCheckboxModule
   ],
   providers: [
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
