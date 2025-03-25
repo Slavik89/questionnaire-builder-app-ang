@@ -37,9 +37,13 @@
         </div>
       </div>
 
-      <button mat-raised-button color="primary" [disabled]="quizTakingForm.invalid">
-        Submit
-      </button>
+      <div class="submit-container">
+        <button mat-raised-button color="primary" [disabled]="quizTakingForm.invalid">
+          Submit
+        </button>
+        <div class="timer">{{ elapsedTime }}</div>
+      </div>
+
     </form>
   </mat-card-content>
 </mat-card>
