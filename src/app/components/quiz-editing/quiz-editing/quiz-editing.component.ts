@@ -14,6 +14,7 @@ export class QuizEditingComponent implements OnInit {
   quizTitle: string = '';
   quizDescription: string = '';
   quizQuestions: any[] = [];
+  quizId: string = '';
 
   quizEditingForm: FormGroup;
 
@@ -37,6 +38,7 @@ export class QuizEditingComponent implements OnInit {
       this.quizTitle = quizData.title;
       this.quizQuestions = quizData.questions;
       this.quizDescription = quizData.description;
+      this.quizId = quizData.quizId;
 
             // Заповнення FormArray
       this.quizEditingForm.setControl('questions', this.fb.array(
@@ -65,9 +67,7 @@ export class QuizEditingComponent implements OnInit {
       question: ['', Validators.required],
       options: this.fb.array([]),
       type: ['Single choice', Validators.required],  
-    }));
-
-    
+    }));    
   }
 
   // Видалення питання за індексом
@@ -91,11 +91,20 @@ export class QuizEditingComponent implements OnInit {
     // Видалення варіанту відповіді
   removeOption(questionIndex: number, optionIndex: number): void {
     this.getOptions(questionIndex).removeAt(optionIndex);
-  }
-  
+  }  
 
-  onSubmit() {
-    console.log('Save Changes', this.quizEditingForm.value);
+  async onSubmit() {
+
+    // console.log('Save Changes', this.quizEditingForm.value);
+
+    try {
+      await this.quizDataService.updateQuiz(this.quizEditingForm.value, this.quizId);
+      console.log('Quiz updated successfully!');
+      this.router.navigate(['/catalog']); 
+    } catch (error) {
+      console.error('Error updating quiz:', error);
+    }
+
   }
 
 }

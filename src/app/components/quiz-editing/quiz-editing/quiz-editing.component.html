@@ -17,7 +17,6 @@
         </mat-form-field>
       </div>
 
-
       <!-- Список питань -->
       <div formArrayName="questions">
         <div *ngFor="let questionGroup of questions.controls; let i = index" [formGroupName]="i">
@@ -28,7 +27,7 @@
 
           <!-- Дропдаун для вибору типу питання -->
           <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Question Type</mat-label>
+            <mat-label>Type</mat-label>
             <mat-select formControlName="type">
               <mat-option *ngFor="let type of questionTypes" [value]="type">
                 {{ type }}
@@ -39,7 +38,7 @@
           <div formArrayName="options" *ngIf="questionGroup.get('type')?.value !== 'Text'">
             <div *ngFor="let optionGroup of getOptions(i).controls; let j = index" [formGroupName]="j">
               <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Option {{ j + 1 }}</mat-label>
+                <mat-label>Choice {{ j + 1 }}</mat-label>
                 <input matInput formControlName="optionText" required />
               </mat-form-field>
 
@@ -52,7 +51,7 @@
           <!-- Кнопка додавання варіантів відповіді -->
  
           <button mat-raised-button color="accent" (click)="addOption(i)" type="button" *ngIf="questionGroup.get('type')?.value !== 'Text'">
-              ➕ Add Option
+              ➕ Add Choice
           </button>
 
                     <!-- Кнопка для видалення питання -->
@@ -67,12 +66,10 @@
         <button mat-raised-button color="accent" (click)="addQuestion()" type="button">Add Question</button>
       </div>
 
-
       <div class="submit-container">
         <button mat-raised-button color="primary" [disabled]="quizEditingForm.invalid">
           Submit
-        </button>
-        
+        </button>        
       </div>
 
     </form>

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Firestore, collection, collectionData, doc, deleteDoc } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, deleteDoc, updateDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,11 @@ export class QuizDataService {
 
   getQuizData() {
     return this.quizData;
+  }
+
+  async updateQuiz(data: any, quizId: string): Promise<void> {
+    const itemDoc = doc(this.firestore, `quizId/${quizId}`);
+    await updateDoc(itemDoc, data);
   }
 
   deleteQuiz(quizId: string): Promise<void> {
