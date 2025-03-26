@@ -1,17 +1,17 @@
 <mat-card class="survey-card">
-  <mat-card-title>{{ quizTitle }}</mat-card-title>
+  <mat-card-title>{{ quizTitle }} <span>quiz</span></mat-card-title>
   <mat-card-content>
     <form [formGroup]="quizTakingForm" (ngSubmit)="onSubmit()">
       <div formArrayName="completedQuiz">
         <div *ngFor="let question of completedQuiz.controls; let i = index" [formGroupName]="i">
           <!-- Заголовок питання -->
-          <h3>{{ question.get('question')?.value }}</h3>
+          <h3>{{i + 1}}<span>.</span> {{ question.get('question')?.value }}</h3>
 
           <!-- Відображення Radio-Button для 'Single choice' -->
           <div *ngIf="question.get('options') && question.get('answer')">
             <mat-radio-group formControlName="answer">
               <mat-radio-button *ngFor="let option of question.get('options')?.value; let j = index" [value]="option" >
-                {{ getOptionLabel(j) }}{{ option }}
+                {{ getOptionLabel(j) }} {{ option }}
               </mat-radio-button>
             </mat-radio-group>
           </div>
@@ -20,7 +20,7 @@
           <div *ngIf="question.get('options') && question.get('answers')">
             <div *ngIf="question.get('answers') as answers" formArrayName="answers">
               <mat-checkbox *ngFor="let option of question.get('options')?.value; let k = index" [formControlName]="k">
-                {{ getOptionLabel(k) }}{{ option }}
+                {{ getOptionLabel(k) }} {{ option }}
               </mat-checkbox>
             </div>
             
