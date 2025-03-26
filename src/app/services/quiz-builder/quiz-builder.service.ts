@@ -7,9 +7,6 @@ import { Firestore, collection, collectionData, addDoc } from '@angular/fire/fir
 })
 export class QuizBuilderService {
 
-  // private firestore = inject(Firestore);
-  // private quizCollection = collection(this.firestore, 'quizzes');
-
   private quizCollection: any;
 
   constructor(private firestore: Firestore, private zone: NgZone) {
