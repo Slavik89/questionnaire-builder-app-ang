@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { QuizDataService } from '../../services/quiz-data/quiz-data.service'; 
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { QuizTakingService } from '../../services/quiz-taking/quiz-taking.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-quiz-taking',
@@ -24,7 +25,11 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
   private startTime!: number;
   private timerInterval!: any;
 
-  constructor(private router: Router, private quizDataService: QuizDataService, private fb: FormBuilder, private quizTaking$: QuizTakingService) {
+  constructor(private router: Router, 
+              private quizDataService: QuizDataService, 
+              private fb: FormBuilder, 
+              private quizTaking$: QuizTakingService,
+              private snackBar: MatSnackBar) {
     // Ініціалізація форми
     this.quizTakingForm = this.fb.group({
       completedQuiz: this.fb.array([]),
@@ -137,10 +142,18 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
       this.quizTaking$.submitQuiz(quizData).subscribe({
         next: () => {
           // console.log("Quiz submitted successfully");
+          this.snackBar.open('Quiz submitted successfully!', 'Close', {
+            duration: 3000, // Тривалість повідомлення
+            panelClass: ['snack-success'] // Клас для успішного повідомлення
+          });
           this.router.navigate(['/catalog']);
         },
         error: (err) => {
           // console.error("Error adding quiz:", err);
+          this.snackBar.open('Error submitting quiz!', 'Close', {
+            duration: 3000, // Тривалість повідомлення
+            panelClass: ['snack-error'] // Клас для повідомлення про помилку
+          });
         }
       });
     }

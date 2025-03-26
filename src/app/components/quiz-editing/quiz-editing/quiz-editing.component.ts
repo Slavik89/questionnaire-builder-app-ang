@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { QuizDataService } from '../../../services/quiz-data/quiz-data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-quiz-editing',
@@ -20,7 +21,11 @@ export class QuizEditingComponent implements OnInit {
 
   questionTypes = ['Single choice', 'Multiple choices', 'Text'];
 
-  constructor(private router: Router, private quizDataService: QuizDataService, private fb: FormBuilder) {
+  constructor(
+    private router: Router, 
+    private quizDataService: QuizDataService, 
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar) {
    
     this.quizEditingForm = this.fb.group({            
       title: [ '', [Validators.required, Validators.minLength(3)]],
@@ -102,9 +107,18 @@ export class QuizEditingComponent implements OnInit {
     this.quizDataService.updateQuiz(this.quizEditingForm.value, this.quizId)
     .then(() => {
       // console.log('Quiz updated successfully!');
+      this.snackBar.open('Quiz updated successfully!', 'Close', {
+        duration: 3000, 
+        panelClass: ['snack-success'] 
+      });
       this.router.navigate(['/catalog']);
     })
-    .catch(error => console.error('Error updating quiz:', error));
+    .catch(error => {
+      this.snackBar.open('Error updating quiz!', 'Close', {
+        duration: 3000, 
+        panelClass: ['snack-error'] 
+      });
+    });
 
   }
 

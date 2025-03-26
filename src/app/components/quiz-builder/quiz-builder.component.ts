@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { QuizBuilderService } from '../../services/quiz-builder/quiz-builder.service';
 import { Router } from '@angular/router';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-quiz-builder',
@@ -16,7 +16,10 @@ export class QuizBuilderComponent {
     // Список доступних типів питань
   questionTypes = ['Single choice', 'Multiple choices', 'Text'];
 
-  constructor(private fb: FormBuilder, private quizzes$: QuizBuilderService, private router: Router) {
+  constructor(private fb: FormBuilder, 
+              private quizzes$: QuizBuilderService, 
+              private router: Router,
+              private snackBar: MatSnackBar) {
     this.quizBuilderForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', Validators.required],
@@ -75,9 +78,17 @@ export class QuizBuilderComponent {
             
       this.quizzes$.addQuiz(this.quizBuilderForm.value).subscribe({
         next: () => {
+          this.snackBar.open('Quiz created successfully!', 'Close', {
+            duration: 3000, 
+            panelClass: ['snack-success']
+          });
           this.router.navigate(['/catalog']);
         },
         error: (err) => {
+          this.snackBar.open('Error creating quiz!', 'Close', {
+            duration: 3000,
+            panelClass: ['snack-error']
+          });
         }
       });
       
