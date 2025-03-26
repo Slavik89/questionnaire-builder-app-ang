@@ -1,3 +1,7 @@
+.mat-mdc-card-title {
+  text-align: center;
+  margin: 10px 0;
+}
 
 ul.list__cards {
   display: flex;
@@ -38,8 +42,7 @@ mat-card.card__class {
         font-family: 'Poppins', sans-serif;
         font-size: 1.5rem;
         font-weight: bold;
-        margin-bottom: 10px;
-        margin-left: 10px;
+        margin: 0 0 10px 10px;
       }
       
       p.description {

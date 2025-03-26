@@ -72,18 +72,12 @@ export class QuizBuilderComponent {
 
   saveSurvey() {
     if (this.quizBuilderForm.valid) {
-      // this.quizBuilderData = this.quizBuilderForm.value;
-      console.log('Save', this.quizBuilderForm.value);
-
-
-      
+            
       this.quizzes$.addQuiz(this.quizBuilderForm.value).subscribe({
         next: () => {
-          console.log("Quiz added successfully");
           this.router.navigate(['/catalog']);
         },
         error: (err) => {
-          console.error("Error adding quiz:", err);
         }
       });
       
