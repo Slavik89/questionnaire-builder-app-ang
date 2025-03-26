@@ -22,28 +22,26 @@ export class CatalogComponent implements OnInit {
     this.quizzes$.subscribe(
       data => {
         this.quizzesContent = data;
-        console.log(this.quizzesContent);
       }
     );
 
     this.quizDataService.getCompletedQuizzes().subscribe(
       (data:any[]) => {
-        console.log('Completed quizzesId', data),
         this.completedQuizzes = data;
       }
     );
   }
 
   onClickRun(quiz: any) {
-    console.log('Run option', quiz.title, quiz.questions);
-    console.log(this.quizzesContent);
+    // console.log('Run option', quiz.title, quiz.questions);
+    // console.log(this.quizzesContent);
     this.quizDataService.setQuizData(quiz);
     this.router.navigate(['/quiz-taking']);
   } 
 
   onClickEdit(quiz: any) {
-    console.log('Edit option', quiz.title, quiz.questions);
-    console.log(this.quizzesContent);
+    // console.log('Edit option', quiz.title, quiz.questions);
+    // console.log(this.quizzesContent);
     this.quizDataService.setQuizData(quiz);
     this.router.navigate(['/quiz-editing']);
   } 

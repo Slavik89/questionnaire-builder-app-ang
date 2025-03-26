@@ -31,7 +31,7 @@ export class QuizEditingComponent implements OnInit {
 
   ngOnInit(): void {
     const quizData = this.quizDataService.getQuizData();
-    console.log('Quiz-Editing', quizData);
+    // console.log('Quiz-Editing', quizData);
 
     if (quizData) {
       // Якщо дані є, зберігаємо їх у змінні
@@ -101,7 +101,7 @@ export class QuizEditingComponent implements OnInit {
 
     this.quizDataService.updateQuiz(this.quizEditingForm.value, this.quizId)
     .then(() => {
-      console.log('Quiz updated successfully!');
+      // console.log('Quiz updated successfully!');
       this.router.navigate(['/catalog']);
     })
     .catch(error => console.error('Error updating quiz:', error));

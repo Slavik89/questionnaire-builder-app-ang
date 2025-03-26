@@ -18,7 +18,7 @@ export class QuizDataService {
 
   setQuizData(quizData: any) {
     this.quizData = quizData; // Зберігаємо об'єкт у сервісі
-    console.log("Set quiz data service", this.quizData);
+    // console.log("Set quiz data service", this.quizData);
   }
 
   getQuizData() {

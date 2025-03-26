@@ -14,6 +14,6 @@ export class QuizTakingService {
   }
   
   submitQuiz(quiz: any): Observable<any> {
-    return from(addDoc(this.submittedQuiz, quiz).then(() => console.log("Quiz added successfully", quiz)));
+    return from(addDoc(this.submittedQuiz, quiz));
   } 
 }

@@ -44,7 +44,7 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
       this.quizId = quizData.quizId;
     }
 
-    console.log('quiz-taking', this.quizTitle, this.quizQuestions);
+    // console.log('quiz-taking', this.quizTitle, this.quizQuestions);
 
     this.loadQuestions();
     this.startTimer();
@@ -132,15 +132,15 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
       this.quizTakingForm.patchValue({ totalTime: totalSeconds, quizTitle: this.quizTitle });
 
       const quizData = { ...this.quizTakingForm.value, quizId: this.quizId };
-      console.log('Form Value:', quizData);
+      // console.log('Form Value:', quizData);
 
       this.quizTaking$.submitQuiz(quizData).subscribe({
         next: () => {
-          console.log("Quiz submitted successfully");
+          // console.log("Quiz submitted successfully");
           this.router.navigate(['/catalog']);
         },
         error: (err) => {
-          console.error("Error adding quiz:", err);
+          // console.error("Error adding quiz:", err);
         }
       });
     }
