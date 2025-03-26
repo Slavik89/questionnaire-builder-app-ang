@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { Firestore, collection, collectionData, doc, deleteDoc, updateDoc } from '@angular/fire/firestore';
 
 @Injectable({
@@ -26,15 +26,13 @@ export class QuizDataService {
   }
 
   async updateQuiz(data: any, quizId: string): Promise<void> {
-    const itemDoc = doc(this.firestore, `quizId/${quizId}`);
-    await updateDoc(itemDoc, data);
+    const item = doc(this.firestore, `quizId/${quizId}`);
+    await updateDoc(item, data);
   }
 
-  deleteQuiz(quizId: string): Promise<void> {
-    const quizDocRef = doc(this.firestore, `quizId/${quizId}`);
-    return deleteDoc(quizDocRef)
-      .then(() => console.log(`Quiz with ID ${quizId} deleted successfully.`))
-      .catch(error => console.error("Error deleting quiz:", error));
+  deleteQuiz(quizId: string): Observable<void> {
+    const item = doc(this.firestore, `quizId/${quizId}`);
+    return from(deleteDoc(item)).pipe();
   }
 
 }  

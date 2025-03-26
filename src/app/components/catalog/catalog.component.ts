@@ -39,6 +39,9 @@ export class CatalogComponent implements OnInit {
   } 
 
   onClickDelete(quiz: any) {
-    console.log('Delete option', quiz.title, quiz.quizId);    
+    this.quizDataService.deleteQuiz(quiz.quizId).subscribe({
+      next: () => console.log(`Quiz with ID ${quiz.quizId} deleted successfully.`),
+      error: (error) => console.error("Error deleting quiz:", error)
+    }); 
   }
 }

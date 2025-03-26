@@ -51,13 +51,9 @@
           <button mat-raised-button color="accent" (click)="addOption(i)" type="button">
             Add option
           </button>
-
-
         </div>
-
-
       </div>
-
+      
       <div>
               <!-- Кнопка додавання питання -->
         <button mat-raised-button color="accent" (click)="addQuestion()" type="button">
@@ -65,12 +61,10 @@
         </button>
       </div>
 
-      <!--  -->
       <button mat-raised-button color="primary" (click)="saveSurvey()" [disabled]="quizBuilderForm.invalid">
         Save
       </button>
 
-      <button mat-flat-button routerLink="/catalog">Turn back to catalog</button>
     </form>
   </mat-card-content>
 </mat-card>

@@ -95,8 +95,6 @@ export class QuizEditingComponent implements OnInit {
 
   async onSubmit() {
 
-    // console.log('Save Changes', this.quizEditingForm.value);
-
     try {
       await this.quizDataService.updateQuiz(this.quizEditingForm.value, this.quizId);
       console.log('Quiz updated successfully!');
