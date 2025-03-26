@@ -1,8 +1,3 @@
-<!-- <ng-container @for="let quiz of quizzesContent; let i = index">
-  <h3>{{ quiz.title }}</h3>
-  <p>{{ quiz.description }}</p>
-</ng-container> -->
-
 <div class="content">
 
   <ul class="list__cards">
@@ -13,6 +8,9 @@
           <div class="left">
             <h3 class="title">{{ quiz.title }}</h3>  
             <p>Description: {{ quiz.description }}</p>
+            <p>Questions:</p>
+            <p>Completed: {{ getCompletedCount(quiz.quizId) }}</p>            
+           
           </div>
   
           <div class="right">

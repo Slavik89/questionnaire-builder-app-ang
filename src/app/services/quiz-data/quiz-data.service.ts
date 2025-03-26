@@ -35,4 +35,9 @@ export class QuizDataService {
     return from(deleteDoc(item)).pipe();
   }
 
+  getCompletedQuizzes(): Observable<any[]> {
+    const articlesCollection = collection(this.firestore, 'submittedQuizzesId');
+    return collectionData(articlesCollection, {idField: 'submittedQuizzesId'}) as Observable<any[]>;
+  }
+
 }  
