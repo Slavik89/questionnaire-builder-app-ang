@@ -14,6 +14,7 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
 
   quizTitle: string | undefined = "";
   quizQuestions: any[] | undefined = [];
+  quizId: string = '';
 
   quizTakingForm: FormGroup;
 
@@ -40,6 +41,7 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
       // Якщо дані є, зберігаємо їх у змінні
       this.quizTitle = quizData.title;
       this.quizQuestions = quizData.questions;
+      this.quizId = quizData.quizId;
     }
 
     console.log('quiz-taking', this.quizTitle, this.quizQuestions);
@@ -128,9 +130,11 @@ export class QuizTakingComponent implements OnInit, OnDestroy {
       const elapsedMs = Date.now() - this.startTime;
       const totalSeconds = Math.floor(elapsedMs / 1000);
       this.quizTakingForm.patchValue({ totalTime: totalSeconds, quizTitle: this.quizTitle });
-      console.log('Form Value:', this.quizTakingForm.value);
 
-      this.quizTaking$.submitQuiz(this.quizTakingForm.value).subscribe({
+      const quizData = { ...this.quizTakingForm.value, quizId: this.quizId };
+      console.log('Form Value:', quizData);
+
+      this.quizTaking$.submitQuiz(quizData).subscribe({
         next: () => {
           console.log("Quiz submitted successfully");
           this.router.navigate(['/catalog']);
