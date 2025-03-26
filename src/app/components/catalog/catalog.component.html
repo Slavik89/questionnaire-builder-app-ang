@@ -8,7 +8,7 @@
           <div class="left">
             <h3 class="title">{{ quiz.title }}</h3>  
             <p>Description: {{ quiz.description }}</p>
-            <p>Questions:</p>
+            <p>Questions: {{quiz.questions.length}}</p>
             <p>Completed: {{ getCompletedCount(quiz.quizId) }}</p>            
            
           </div>
