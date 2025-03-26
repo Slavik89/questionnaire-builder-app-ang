@@ -91,7 +91,11 @@ export class QuizEditingComponent implements OnInit {
     // Видалення варіанту відповіді
   removeOption(questionIndex: number, optionIndex: number): void {
     this.getOptions(questionIndex).removeAt(optionIndex);
-  }  
+  } 
+  
+  cancel() {
+    this.router.navigate(['/catalog']);
+  }
 
   onSubmit() {
 

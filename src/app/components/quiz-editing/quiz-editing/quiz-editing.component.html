@@ -20,56 +20,69 @@
       <!-- Список питань -->
       <div formArrayName="questions">
         <div *ngFor="let questionGroup of questions.controls; let i = index" [formGroupName]="i">
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Question {{ i + 1 }}</mat-label>
-            <input matInput formControlName="question" required />
-          </mat-form-field>
 
-          <!-- Дропдаун для вибору типу питання -->
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Type</mat-label>
-            <mat-select formControlName="type">
-              <mat-option *ngFor="let type of questionTypes" [value]="type">
-                {{ type }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+          <div class="question__container">
+
+            <mat-form-field appearance="outline" class="question">
+              <mat-label>Question {{ i + 1 }}</mat-label>
+              <input matInput formControlName="question" required />
+            </mat-form-field>
+  
+            <!-- Дропдаун для вибору типу питання -->
+            <mat-form-field appearance="outline" class="question__type">
+              <mat-label>Type</mat-label>
+              <mat-select formControlName="type">
+                <mat-option *ngFor="let type of questionTypes" [value]="type">
+                  {{ type }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+              
+            <!-- Кнопка для видалення питання -->
+            <button mat-icon-button color="warn" class="remove__question" (click)="removeQuestion(i)" matTooltip="Remove a question" type="button">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+          </div>
+
           <!-- Відображаємо варіанти відповіді, якщо тип не 'Text' -->
           <div formArrayName="options" *ngIf="questionGroup.get('type')?.value !== 'Text'">
             <div *ngFor="let optionGroup of getOptions(i).controls; let j = index" [formGroupName]="j">
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Choice {{ j + 1 }}</mat-label>
-                <input matInput formControlName="optionText" required />
-              </mat-form-field>
 
-              <button mat-icon-button color="warn" (click)="removeOption(i, j)" type="button">
-                <mat-icon>delete</mat-icon>
-              </button>
+              <div class="choice__container">
+
+                <mat-form-field appearance="outline" class="choice">
+                  <mat-label>Choice {{ j + 1 }}</mat-label>
+                  <input matInput formControlName="optionText" required />
+                </mat-form-field>
+  
+                <button mat-icon-button color="warn" class="delete__choice" matTooltip="Remove a choice" type="button" (click)="removeOption(i, j)" >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
             </div>
           </div>
 
-          <!-- Кнопка додавання варіантів відповіді -->
- 
+          <!-- Кнопка додавання варіантів відповіді --> 
           <button mat-raised-button color="accent" (click)="addOption(i)" type="button" *ngIf="questionGroup.get('type')?.value !== 'Text'">
-              ➕ Add Choice
+              Add Choice
           </button>
 
-                    <!-- Кнопка для видалення питання -->
-          <button mat-icon-button color="warn" (click)="removeQuestion(i)" type="button">
-            <mat-icon>delete</mat-icon>
-          </button>
+
         </div>        
       </div>
       
             <!-- Кнопка для додавання нового питання -->
       <div class="add-question-container">
         <button mat-raised-button color="accent" (click)="addQuestion()" type="button">Add Question</button>
-      </div>
 
-      <div class="submit-container">
         <button mat-raised-button color="primary" [disabled]="quizEditingForm.invalid">
           Save Changes
-        </button>        
+        </button> 
+
+        <button mat-raised-button color="primary" [disabled]="quizEditingForm.invalid">
+          Cancel
+        </button>
       </div>
 
     </form>

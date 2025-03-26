@@ -1,0 +1,49 @@
+.survey-card {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.mdc-button {
+  margin: 0 10px 17px 0;
+}
+
+.mat-mdc-card-title {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+div.question__container {
+
+  display: flex; 
+  gap: 10px;
+  margin-top: 10px;
+  
+  mat-form-field.question {
+    flex: 70%
+  }
+
+  mat-form-field.question__type {
+    flex: 25%
+  }
+
+  button.remove__question {
+    flex: 5%
+  }
+}
+
+div.choice__container {
+  display: flex; 
+  gap: 10px;
+
+  mat-form-field.choice {
+    flex: 60%
+  }
+
+}
+
