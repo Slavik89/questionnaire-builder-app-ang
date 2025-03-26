@@ -80,3 +80,16 @@ mat-card.card__class:hover {
 div.example-button-row {
   margin: 0 50px;
 }
+
+
+/* Стиль для успішних сповіщень */
+.success-snackbar {
+  background-color: #4caf50;
+  color: white;
+}
+
+/* Стиль для сповіщень про помилки */
+.error-snackbar {
+  background-color: #f44336;
+  color: white;
+}

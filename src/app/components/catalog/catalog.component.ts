@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizDataService } from '../../services/quiz-data/quiz-data.service';
-import { Observable, map } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-catalog',
@@ -15,7 +15,8 @@ export class CatalogComponent implements OnInit {
   quizzes$ = inject(QuizDataService).getQuizzes();   
   completedQuizzes: any[] = [];  // масив з завершеними квізами
 
-  constructor(private router: Router, private quizDataService: QuizDataService) {}
+  constructor(private router: Router, private quizDataService: QuizDataService,
+    private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.quizzes$.subscribe(
@@ -49,8 +50,18 @@ export class CatalogComponent implements OnInit {
 
   onClickDelete(quiz: any) {
     this.quizDataService.deleteQuiz(quiz.quizId).subscribe({
-      next: () => console.log(`Quiz with ID ${quiz.quizId} deleted successfully.`),
-      error: (error) => console.error("Error deleting quiz:", error)
+      next: () => {        
+        // Показуємо помилку
+        this.snackBar.open('The quiz was deleted successfully.', 'Close', {
+          duration: 3000,
+          panelClass: ['error-snackbar'],
+        });},
+      error: (error) => {
+        this.snackBar.open('Error deleting quiz. Please try again.', 'Close', {
+          duration: 3000,
+          panelClass: ['error-snackbar'],
+        });
+      }
     }); 
   }
 
