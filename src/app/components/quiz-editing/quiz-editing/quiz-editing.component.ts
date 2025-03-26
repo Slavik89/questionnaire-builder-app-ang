@@ -93,15 +93,14 @@ export class QuizEditingComponent implements OnInit {
     this.getOptions(questionIndex).removeAt(optionIndex);
   }  
 
-  async onSubmit() {
+  onSubmit() {
 
-    try {
-      await this.quizDataService.updateQuiz(this.quizEditingForm.value, this.quizId);
+    this.quizDataService.updateQuiz(this.quizEditingForm.value, this.quizId)
+    .then(() => {
       console.log('Quiz updated successfully!');
-      this.router.navigate(['/catalog']); 
-    } catch (error) {
-      console.error('Error updating quiz:', error);
-    }
+      this.router.navigate(['/catalog']);
+    })
+    .catch(error => console.error('Error updating quiz:', error));
 
   }
 

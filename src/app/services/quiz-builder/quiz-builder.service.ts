@@ -19,24 +19,6 @@ export class QuizBuilderService {
   
   addQuiz(quiz: any): Observable<any> {
     return from(addDoc(this.quizCollection, quiz).then(() => console.log("Quiz added successfully", quiz)));
-  }  
-  
-  
-  /*
-  addQuiz(quiz: any): Observable<any> {
-    return new Observable((observer) => {
-      addDoc(this.quizCollection, quiz).then(() => {
-        this.zone.run(() => {
-          console.log("Quiz added successfully", quiz);
-          observer.next("Quiz added successfully");
-        });
-      }).catch((error) => {
-        this.zone.run(() => {
-          observer.error(error);
-        });
-      });
-    });
   }
-  */
-
+  
 }
