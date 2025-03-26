@@ -28,6 +28,7 @@ import { QuizTakingComponent } from './components/quiz-taking/quiz-taking.compon
 import { MatMenuModule } from '@angular/material/menu';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { QuizEditingComponent } from './components/quiz-editing/quiz-editing/quiz-editing.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { QuizEditingComponent } from './components/quiz-editing/quiz-editing/qui
     MatRadioModule,
     MatSelectModule,
     MatMenuModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTooltipModule
   ],
   providers: [
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
