@@ -4,7 +4,7 @@
 To complete this test task, I used: 
 + **Angular** - as the web framework; 
 + **Firebase** -  as the non-relational database; 
-+ **Angular** - Material as the UI library;
++ **Angular Material** -  as the UI library;
 
 ## Website deployment
 
